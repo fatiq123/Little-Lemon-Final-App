@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
                         Home(navController)
                     }
                     composable(DestinationImp.profile) {
-                        Profile()
+                        Profile(navController)
                     }
                     // Add more composable entries for other destinations as needed
                 }
@@ -51,7 +51,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // ... (same code as before)
 
     private fun getOnboardingCompletedFlag(): Boolean {
         val sharedPreferences = getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)

@@ -2,6 +2,7 @@ package com.example.littlelemonfinalapp
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -203,6 +204,7 @@ fun Onboarding(navHostController: NavHostController) {
                         snackBarHostState.showSnackbar(message = registrationMessage!!, duration = SnackbarDuration.Long)
                     }*/
 
+                    Toast.makeText(context, "Registration successful!", Toast.LENGTH_SHORT).show()
 
                     // Set the onboarding completed flag
                     (context as? MainActivity)?.setOnboardingCompletedFlag()
@@ -215,6 +217,8 @@ fun Onboarding(navHostController: NavHostController) {
                         delay(5000L)
                         snackBarHostState.showSnackbar(message = registrationMessage!!, duration = SnackbarDuration.Long)
                     }*/
+                    Toast.makeText(context, "Registration unsuccessful. Please enter all data.", Toast.LENGTH_SHORT).show()
+
                 }
             },
             modifier = Modifier
@@ -233,13 +237,13 @@ fun Onboarding(navHostController: NavHostController) {
             )
         }
 
-        // Display the Snackbar when registrationMessage is not null
+        /*// Display the Snackbar when registrationMessage is not null
         registrationMessage?.let { message ->
             RegistrationSnackbar(message = message) {
                 // Reset the registrationMessage when Snackbar is dismissed
                 registrationMessage = null
             }
-        }
+        }*/
     }
 
 }
