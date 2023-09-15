@@ -70,6 +70,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
 
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.2")
+
     // Ktor
     implementation("io.ktor:ktor-server-core:2.3.4")
     implementation("io.ktor:ktor-client-core:2.3.4")
