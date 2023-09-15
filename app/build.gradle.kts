@@ -97,4 +97,5 @@ dependencies {
 
     // Ktor serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
+
 }
