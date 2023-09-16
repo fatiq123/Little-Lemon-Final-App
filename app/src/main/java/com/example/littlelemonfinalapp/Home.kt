@@ -13,8 +13,6 @@ import androidx.room.Room
 import com.example.littlelemonfinalapp.database.Database
 import com.example.littlelemonfinalapp.network.Menu
 import com.example.littlelemonfinalapp.panels.HomeScreen
-import com.example.littlelemonfinalapp.panels.TopAppBar
-import com.example.littlelemonfinalapp.panels.UpperPanel
 
 @Composable
 fun Home(navController: NavController) {

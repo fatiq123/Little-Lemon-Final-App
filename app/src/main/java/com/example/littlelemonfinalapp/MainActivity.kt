@@ -64,7 +64,6 @@ class MainActivity : ComponentActivity() {
                     composable(DestinationImp.profile) {
                         Profile(navController)
                     }
-                    // Add more composable entries for other destinations as needed
                 }
             }
         }

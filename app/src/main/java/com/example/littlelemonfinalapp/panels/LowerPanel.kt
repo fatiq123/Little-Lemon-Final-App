@@ -12,10 +12,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -45,6 +47,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -259,6 +263,7 @@ fun Header(navController: NavController) {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(vertical = 2.dp)
+                    .clip(CircleShape),
             )
         }
 
@@ -280,8 +285,24 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
             .background(LittleLemonColor.green)
             .padding(horizontal = 20.dp, vertical = 10.dp)
     ) {
-        Text(text = "Little Lemon", style = MaterialTheme.typography.titleLarge, color = LittleLemonColor.yellow)
-        Text(text = "New York", style = MaterialTheme.typography.titleMedium, color = Color.White)
+        Text(
+            text = "Little Lemon",
+            style = MaterialTheme.typography.headlineLarge,
+            color = LittleLemonColor.yellow,
+//            fontFamily = FontFamily(Font(R.font.markazi_text))
+            fontFamily = FontFamily.Serif
+        )
+
+        Spacer(modifier = Modifier.height(5.dp))
+
+        Text(
+            text = "New York",
+            style = MaterialTheme.typography.headlineSmall,
+            color = Color.White,
+//            fontFamily = FontFamily(Font(R.font.markazi_text))
+            fontFamily = FontFamily.Serif
+        )
+
         Row(
             Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -289,9 +310,12 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
         ) {
             Text(
                 text = "We are a family owned Mediterranean restaurant, focused on traditional recipes served with  a modern twist. Turkish, Italian, Indian and chinese recipes are our speciality.",
-                modifier = Modifier.fillMaxWidth(0.7f),
+                modifier = Modifier
+                    .fillMaxWidth(0.7f)
+                    .padding(top = 15.dp, bottom = 10.dp),
                 color = Color.White,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                fontFamily = FontFamily(Font(R.font.karla))
             )
             Image(
                 painter = painterResource(id = R.drawable.hero_image),
@@ -384,10 +408,13 @@ fun MenuCategories(categories: Set<String>, categoryLambda: (sel: String) -> Uni
         mutableStateOf("")
     }
 
-    Card(elevation = CardDefaults.cardElevation(defaultElevation = 10.dp), modifier = Modifier.fillMaxWidth()) {
+    Card(
+        elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
 
         Column(Modifier.padding(horizontal = 20.dp, vertical = 10.dp)) {
-            Text(text = "ORDER FOR DELIVERY", fontWeight = FontWeight.Bold)
+            Text(text = "ORDER FOR DELIVERY", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif)
 
             Row(
                 modifier = Modifier
@@ -430,7 +457,7 @@ fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
             containerColor = LittleLemonColor.cloud
         )
     ) {
-        Text(text = category)
+        Text(text = category, fontFamily = FontFamily.Serif)
     }
 }
 
@@ -447,7 +474,7 @@ fun MenuItem(item: Model) {
     Card(elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier
             .clickable {
-
+                    // TODO when user clicks on specific card
             }) {
         Row(
             Modifier
@@ -463,10 +490,11 @@ fun MenuItem(item: Model) {
                 Text(
                     text = item.title,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(bottom = 10.dp)
+                    modifier = Modifier.padding(bottom = 10.dp),
+                    fontFamily = FontFamily.Serif
                 )
-                Text(text = itemDescription, modifier = Modifier.padding(bottom = 10.dp))
-                Text(text = "$ ${item.price}", fontWeight = FontWeight.Bold)
+                Text(text = itemDescription, modifier = Modifier.padding(bottom = 10.dp), fontFamily = FontFamily.Serif)
+                Text(text = "$ ${item.price}", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif)
 
             }
 

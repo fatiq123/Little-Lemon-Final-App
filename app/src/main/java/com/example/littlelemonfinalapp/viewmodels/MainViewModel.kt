@@ -34,6 +34,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         return database.appDao().getAllData()
     }
 
+    // this function is used to store the data in database locally if internet is not available
+
     fun fetchMenuDataIfNeeded() {
         viewModelScope.launch(Dispatchers.IO) {
             if (database.appDao().isEmpty()) {
