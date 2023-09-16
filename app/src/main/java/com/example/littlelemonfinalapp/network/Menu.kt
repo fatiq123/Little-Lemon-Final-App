@@ -17,4 +17,15 @@ data class Menu(
     val price: String,
     @SerialName("title")
     val title: String
-)
+) {
+    fun toMenuItem() = Menu (
+        category,
+        description,
+        id,
+        image,
+        price,
+        title
+    )
+    /*The toMenuItem function should use all of the properties of the MenuNetwork class and return an
+    instance of the MenuItem class that can be saved to the database.*/
+}
