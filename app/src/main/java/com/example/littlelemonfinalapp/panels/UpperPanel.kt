@@ -41,7 +41,7 @@ import com.example.littlelemonfinalapp.R
 @Composable
 fun UpperPanel(navController: NavController) {
 
-    var search by remember {
+    var searchPhrase by remember {
         mutableStateOf("")
     }
 
@@ -88,9 +88,9 @@ fun UpperPanel(navController: NavController) {
         }
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
-            value = search,
+            value = searchPhrase,
             onValueChange = {
-                search = it
+                searchPhrase = it
             },
             modifier = Modifier
                 .fillMaxWidth()

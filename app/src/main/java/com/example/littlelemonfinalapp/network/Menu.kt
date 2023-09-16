@@ -1,5 +1,6 @@
 package com.example.littlelemonfinalapp.network
 
+import com.example.littlelemonfinalapp.database.Model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,13 +19,13 @@ data class Menu(
     @SerialName("title")
     val title: String
 ) {
-    fun toMenuItem() = Menu (
-        category,
-        description,
-        id,
-        image,
-        price,
-        title
+    fun toModel() = Model (
+        category = category,
+        description = description,
+        id = id,
+        image = image,
+        price = price,
+        title = title
     )
     /*The toMenuItem function should use all of the properties of the MenuNetwork class and return an
     instance of the MenuItem class that can be saved to the database.*/

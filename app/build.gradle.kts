@@ -98,4 +98,6 @@ dependencies {
     // Ktor serialization
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.1.3")
 
+    // glide
+    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.5")
 }
