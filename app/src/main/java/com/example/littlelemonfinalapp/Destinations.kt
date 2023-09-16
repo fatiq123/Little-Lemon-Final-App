@@ -4,6 +4,7 @@ interface Destinations {
     val onBoarding: String
     val home: String
     val profile: String
+//    val detail: String
 }
 
 object DestinationImp: Destinations {
@@ -13,5 +14,7 @@ object DestinationImp: Destinations {
         get() = "home"
     override val profile: String
         get() = "profile"
+//    override val detail: String
+//        get() = "detail"
 
 }

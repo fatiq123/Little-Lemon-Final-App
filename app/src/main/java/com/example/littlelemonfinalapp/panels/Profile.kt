@@ -1,4 +1,4 @@
-package com.example.littlelemonfinalapp
+package com.example.littlelemonfinalapp.panels
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -7,38 +7,32 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.room.Room
-import com.example.littlelemonfinalapp.database.Database
-import com.example.littlelemonfinalapp.network.Menu
+import com.example.littlelemonfinalapp.DestinationImp
+import com.example.littlelemonfinalapp.R
 import com.example.littlelemonfinalapp.ui.theme.LittleLemonColor
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,9 +42,12 @@ fun Profile(navController: NavController) {
     val userData = getUserData(LocalContext.current)
     val context = LocalContext.current
 
+    val scrollState = rememberScrollState()
+
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.verticalScroll(state = scrollState)
     ) {
         Image(
             painter = painterResource(id = R.drawable.logo),

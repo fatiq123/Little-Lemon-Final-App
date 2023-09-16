@@ -227,7 +227,11 @@ fun HomeScreen(navController: NavController) {
         UpperPanel() {
             searchPhrase.value = it
         }
-        LowerPanel(databaseMenuItems, searchPhrase)
+        LowerPanel(
+            databaseMenuItems = databaseMenuItems,
+            search = searchPhrase,
+            /*navController = navController*/
+        )
     }
 
 
@@ -352,7 +356,11 @@ fun UpperPanel(search: (parameter: String) -> Unit) {
 }
 
 @Composable
-fun LowerPanel(databaseMenuItems: List<Model>, search: MutableState<String>) {
+fun LowerPanel(
+    databaseMenuItems: List<Model>,
+    search: MutableState<String>,
+    /*navController: NavController,*/
+) {
     val categories = databaseMenuItems.map {
         it.category.replaceFirstChar { character ->
             character.uppercase()
@@ -394,7 +402,7 @@ fun LowerPanel(databaseMenuItems: List<Model>, search: MutableState<String>) {
         Spacer(modifier = Modifier.size(2.dp))
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             for (item in filteredItems) {
-                MenuItem(item = item)
+                MenuItem(item = item/*, navController = navController*/)
             }
         }
 
@@ -414,7 +422,11 @@ fun MenuCategories(categories: Set<String>, categoryLambda: (sel: String) -> Uni
     ) {
 
         Column(Modifier.padding(horizontal = 20.dp, vertical = 10.dp)) {
-            Text(text = "ORDER FOR DELIVERY", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif)
+            Text(
+                text = "ORDER FOR DELIVERY",
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Serif
+            )
 
             Row(
                 modifier = Modifier
@@ -463,7 +475,7 @@ fun CategoryButton(category: String, selectedCategory: (sel: String) -> Unit) {
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun MenuItem(item: Model) {
+fun MenuItem(item: Model, /*navController: NavController*/) {
 
     val itemDescription = if (item.description.length > 100) {
         item.description.substring(0, 100) + ". . ."
@@ -474,7 +486,8 @@ fun MenuItem(item: Model) {
     Card(elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         modifier = Modifier
             .clickable {
-                    // TODO when user clicks on specific card
+                // TODO when user clicks on specific card
+//                navController.navigate(DestinationImp.detail + "/${item.id}")
             }) {
         Row(
             Modifier
@@ -493,8 +506,16 @@ fun MenuItem(item: Model) {
                     modifier = Modifier.padding(bottom = 10.dp),
                     fontFamily = FontFamily.Serif
                 )
-                Text(text = itemDescription, modifier = Modifier.padding(bottom = 10.dp), fontFamily = FontFamily.Serif)
-                Text(text = "$ ${item.price}", fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif)
+                Text(
+                    text = itemDescription,
+                    modifier = Modifier.padding(bottom = 10.dp),
+                    fontFamily = FontFamily.Serif
+                )
+                Text(
+                    text = "$ ${item.price}",
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Serif
+                )
 
             }
 

@@ -42,15 +42,6 @@ fun Home(navController: NavController) {
 }
 
 
-/* to display home screen items */
-@Composable
-fun MenuItems(items: List<Menu>) {
-    Column {
-
-    }
-}
-
-
 @Preview
 @Composable
 fun PreviewHome() {

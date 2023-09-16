@@ -4,21 +4,21 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.ui.platform.LocalContext
+import androidx.activity.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
 import com.example.littlelemonfinalapp.database.Database
-import com.example.littlelemonfinalapp.network.Menu
-import com.example.littlelemonfinalapp.network.Network
+import com.example.littlelemonfinalapp.database.Model
 import com.example.littlelemonfinalapp.panels.HomeScreen
+import com.example.littlelemonfinalapp.panels.Onboarding
+import com.example.littlelemonfinalapp.panels.Profile
 import com.example.littlelemonfinalapp.ui.theme.LittleLemonFinalAppTheme
+import com.example.littlelemonfinalapp.viewmodels.ModelViewModel
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.json.json
 
@@ -37,9 +37,13 @@ class MainActivity : ComponentActivity() {
             json(contentType = ContentType("text", "plain"))
         }
     }
-
+    private lateinit var model: Model
+    private val modelViewModel: ModelViewModel by viewModels()
 
     private val sharedPrefsKey = "onboarding_completed"
+    private val viewModel = ModelViewModel()
+//    private val mainViewModel = MainViewModel(application = application)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -54,6 +58,12 @@ class MainActivity : ComponentActivity() {
                     DestinationImp.onBoarding
                 }
 
+               /*model = Model(category = "", description = "",id=1, image = "", price = "",title="")
+                // Initialize and set the Model data
+                val modelList = listOf(*//* Initialize your Model items here *//*)
+                modelViewModel.setModelData(modelList)*/
+
+
                 NavHost(navController = navController, startDestination = startDestination) {
                     composable(DestinationImp.onBoarding) {
                         Onboarding(navController)
@@ -64,6 +74,16 @@ class MainActivity : ComponentActivity() {
                     composable(DestinationImp.profile) {
                         Profile(navController)
                     }
+                    /*composable(
+                        route = DestinationImp.detail + "/{itemId}",
+                        arguments = listOf(navArgument("itemId") { type = NavType.StringType })
+                    ) { backStackEntry ->
+                        val itemId = backStackEntry.arguments?.getString("itemId")
+                        if (itemId != null) {
+                            DishDetails(navController, itemId, mainViewModel) // Use MainViewModel here
+                        }
+                    }*/
+
                 }
             }
         }
